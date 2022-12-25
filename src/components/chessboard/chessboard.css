@@ -1,0 +1,33 @@
+.square{
+        border: 0px solid rgb(58, 58, 60);
+        background-color: grey;
+        width: 100px;
+        height: 100px;
+
+}
+
+.white{
+        background-color: white;
+}
+
+.black{
+        background-color: black;
+}
+
+#board {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-gap: 0px;
+      
+
+        box-sizing: border-box;
+    }
+
+#board-container {
+display: flex;
+justify-content: center;
+align-items: center;
+flex-grow: 1;
+overflow: hidden;
+}
+
