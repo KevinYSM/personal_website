@@ -1,8 +1,8 @@
 .square{
         border: 0px solid rgb(58, 58, 60);
         background-color: grey;
-        width: 100px;
-        height: 100px;
+        width: 10vh;
+        height: 10vh;
 
 }
 
@@ -24,10 +24,13 @@
     }
 
 #board-container {
-display: flex;
-justify-content: center;
-align-items: center;
-flex-grow: 1;
-overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        overflow: hidden;
+        margin: 5vh;
+        height: 80vh;
+    
 }
 
