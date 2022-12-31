@@ -1,8 +1,14 @@
+:root {
+  
+        --squareSize: calc(85vw/8);
+        
+    }
+
 .square{
         border: 0px solid rgb(58, 58, 60);
         background-color: grey;
-        width: 10vh;
-        height: 10vh;
+        width: var(--squareSize);
+        height: var(--squareSize);
 
 }
 
