@@ -1,0 +1,25 @@
+:root {
+  
+        --squareSize: min(calc(80vw/8),calc(80vh/8));
+        
+    }
+
+.square{
+        border: 0px solid rgb(58, 58, 60);
+        background-color: grey;
+        width: var(--squareSize);
+        height: var(--squareSize);
+        border: none;
+
+}
+
+.white{
+        background-color: white;
+        border: none;
+}
+
+.black{
+        background-color: black;
+        border: none;
+       
+}
