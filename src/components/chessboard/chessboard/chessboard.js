@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import './chessboard.css'
 
+
 export default function Chessboard(props) {
         
         var num_cols=props.num_cols;
