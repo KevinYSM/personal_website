@@ -5,7 +5,7 @@ import MobileNavbar from "./components/navbar/mobile/navbar";
 import Endcredits from "./components/endcredits/endcredits";
 import PieceTray from "./components/chessboard/piecetray/piecetray"
 import Square from "./components/chessboard/square/square"
-import Gamelogic from "./components/gamelogic/gamelogic";
+import Gamelogic from "./components/logic/piecelogic";
 
 function App() {
         var pieceSelected=false;

@@ -1,44 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import "./piecetray.css"
 import wpawn from "../../../assets/icons/chess_pieces/default/wpawn.svg"
-
+import "../../logic/piecelogic"
 function Piecetray() {
         
         
         
-        useEffect(() => {
-             addPieces();
-                //document.getElementById("board").addEventListener("contextmenu", {highlightSquare});
-                },[]);
-        
-function addPieces(){
     
-        let trayPieces=document.getElementsByClassName("traySquare");
         
-        for (var i=0;i<trayPieces.length;i++){
-                let trayPiece=trayPieces[i]
-                let pieceType=trayPiece.id;
-             
 
-                addPiece(trayPiece, pieceType);
-        }
-}
-
-function addPiece(square, piece){
-        if (square.hasChildNodes()) {
-                square.removeChild(square.firstChild);
-            }
-        square.appendChild(createPiece(piece));
-                    
-}
-
-function createPiece(piece){
-        let pieceImage=document.createElement("img"); 
-        pieceImage.src="chess_pieces/default/"+piece+".svg";
-        pieceImage.setAttribute("class","pieceImage");
-        pieceImage.classList.add(piece);
-        return pieceImage;
-}
 
 
   return (

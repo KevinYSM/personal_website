@@ -16,6 +16,7 @@ useEffect(() => {
     <div id="board_container">
         <div id="board" onContextMenu={e=>highlightSquare(e)}></div>
 
+        <div id="hovered_square"></div>
     </div>
   )
   
@@ -32,19 +33,29 @@ function createSquares(num_cols, num_rows){
         for (let i=0;i<num_squares;i++){
                 let square = document.createElement("div");
                 square.classList.add("square");
-                square.setAttribute("id", "square"+i);
+                square.setAttribute("id", i);
                 square.classList.add(getSquareColor(i, num_rows));
 
                 
                 //Add event Listeners
                 square.addEventListener("click", clickSquare);
-                
+                square.addEventListener("mouseover",updateHoverSquare)
+                square.addEventListener("mouseleave", updateLeaveSquare)
                 board.appendChild(square);
         }
 
 
 }
 
+
+function updateLeaveSquare(){
+        document.getElementById("hovered_square").innerHTML=false;
+}
+function updateHoverSquare(){
+        
+        document.getElementById("hovered_square").innerHTML=this.id;
+      
+}
 function getSquareColor(square_id, num_cols) {
         let row = Math.floor(square_id / num_cols);
     

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 function Gamelogic() {
 
         useEffect(() => {
+                addPieces();
                 addPiecesLogic();
                    //document.getElementById("board").addEventListener("contextmenu", {highlightSquare});
                    },[]);
@@ -15,6 +16,37 @@ function Gamelogic() {
         var pieceSelected=false;
         var mousedown=false;
 
+        function addPieces(){
+    
+                let trayPieces=document.getElementsByClassName("traySquare");
+                
+                for (var i=0;i<trayPieces.length;i++){
+                        let trayPiece=trayPieces[i]
+                        let pieceType=trayPiece.id;
+                     
+        
+                        addPiece(trayPiece, pieceType);
+                }
+        }
+        
+        function addPiece(square, piece){
+                if (square.hasChildNodes()) {
+                        square.removeChild(square.firstChild);
+                    }
+                addLogic(square);
+                square.appendChild(createPiece(piece));
+                
+                            
+        }
+        
+        function createPiece(piece){
+                let pieceImage=document.createElement("img"); 
+                pieceImage.src="chess_pieces/default/"+piece+".svg";
+                pieceImage.setAttribute("class","pieceImage");
+                pieceImage.classList.add(piece);
+                
+                return pieceImage;
+        }
 
         function addPiecesLogic(){
                 let trayPieces=document.getElementsByClassName("traySquare");
@@ -26,44 +58,64 @@ function Gamelogic() {
                 
         }
         function addLogic(piece){
-                let pieceImage=piece.firstChild;
+               
                 
-                pieceImage.addEventListener("mousedown", clickPiece);
-                pieceImage.addEventListener("mouseup", releasePiece);
-        
-                pieceImage.addEventListener("touchstart", clickPiece);
-                pieceImage.addEventListener("touchend", releasePiece);
+                piece.addEventListener("mousedown", clickPiece);
+                piece.addEventListener("mouseup", releasePiece);
+                
+                piece.addEventListener("touchstart", clickPiece);
+                piece.addEventListener("touchend", releasePiece);
                 
         }
         function clickPiece(){
-                pieceSelected=this.classList[1];
-                console.log(pieceSelected);
+             
+                pieceSelected=this.firstChild.classList[1];
+                
+                if (!this.classList.contains("traySquare")){
+                        this.firstChild.remove();
+                }
+                
                 
         }
         function releasePiece(){
-                pieceSelected=false;
+                //pieceSelected=false;
               
         }
 
         function docMouseUp(){
                 mousedown=false;
-                document.getElementById("draggable").remove();
+                if(document.getElementById("draggable")){
+                        document.getElementById("draggable").remove();
+                }
                 document.body.style.cursor = 'default';
-               
+                
+                if (pieceSelected){
+                        let square_id=document.getElementById("hovered_square").innerHTML;
+                   
+                        if (square_id){
+                                addPiece(document.getElementById(square_id),pieceSelected);
+                        }
+                }
+                pieceSelected=false;
         
         }
         function docMouseMove(event){
-                
+                event.preventDefault();
                 if (mousedown && pieceSelected){
                         var mousecoords=getMouseLoc(event);
-                        console.log(mousecoords);
+                       
                         dragPiece(pieceSelected, mousecoords);
                 }
                 
         }
-        function docMouseDown(){
+        function docMouseDown(event){
+                event.preventDefault();
                 mousedown=true;
-              
+                if (pieceSelected){
+                        var mousecoords=getMouseLoc(event);
+                       
+                        dragPiece(pieceSelected, mousecoords);
+                }
                 
         }
         
