@@ -1,24 +1,4 @@
-:root {
-  
-        --squareSize: calc(85vw/8);
-        
-    }
 
-.square{
-        border: 0px solid rgb(58, 58, 60);
-        background-color: grey;
-        width: var(--squareSize);
-        height: var(--squareSize);
-
-}
-
-.white{
-        background-color: white;
-}
-
-.black{
-        background-color: black;
-}
 
 #board {
         display: grid;
@@ -29,7 +9,7 @@
         box-sizing: border-box;
     }
 
-#board-container {
+#board_container {
         display: flex;
         justify-content: center;
         align-items: center;

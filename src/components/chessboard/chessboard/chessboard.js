@@ -12,7 +12,7 @@ useEffect(() => {
         },[]);
   return (
 
-    <div id="board-container">
+    <div id="board_container">
         <div id="board" onContextMenu={e=>highlightSquare(e)}></div>
 
     </div>
@@ -27,7 +27,7 @@ function createSquares(num_cols, num_rows){
         let num_squares=num_cols*num_rows;
         const board = document.getElementById("board");
         board.style.gridTemplateColumns="1fr ".repeat(num_rows);
-        console.log(board.style.gridTemplateColumns);
+
         for (let i=0;i<num_squares;i++){
                 let square = document.createElement("div");
                 square.classList.add("square");

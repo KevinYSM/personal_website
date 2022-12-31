@@ -1,0 +1,44 @@
+#piecetray_container{
+        display: flex;
+        justify-content: center;
+         align-items: center;
+        background-color: rgb(27,27,27);
+}
+
+#piecetray{
+      
+        
+   
+        background-color: white;
+}
+
+#piecetray_container .square{
+        height: var(--squareSize);
+        width: var(--squareSize);
+}
+
+.pieceImage {
+        width: 100%;
+        height: 100%;
+        cursor: grab;
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        -moz-user-drag: none;
+        -o-user-drag: none;
+        
+        
+    
+}
+
+.draggedPiece{
+        width: var(--squareSize);
+        height: var(--squareSize);
+}
+#draggable {
+        width: var(--squareSize);
+        /*cursor: move; /*fallback if grab cursor is unsupported*/
+        cursor: grab;
+        
+        position: relative;
+    
+    }
