@@ -5,11 +5,14 @@
         justify-content: space-between;
 
         
-        -webkit-transition: border-color .7s linear;
-        -moz-transition: border-color .7s linear;
-                transition: border-color .7s linear;
+        
+        -webkit-transition: background-color .7s linear,  border-color .7s linear, opacity .7s linear;
+        -moz-transition: background-color .7s linear,  border-color .7s linear,  opacity .7s linear;
+                transition: background-color .7s linear,  border-color .7s linear, opacity .7s linear;
 
-   
+        
+
+              
        
 }
 
@@ -55,30 +58,72 @@
         position: fixed;
         right: 0;
         top: 8vh;
-        z-index: 1;
-        
-        -webkit-transition: height .7s ease;
-       -moz-transition: height .7s ease;
-            transition: height .7s ease;
+      
+        -webkit-transition: height .4s linear, background-color .7s linear,  border-color .7s linear, opacity .4s linear;
+        -moz-transition: height .4s linear, background-color .7s linear,  border-color .7s linear,  opacity .4s linear;
+                transition: height .4s linear, background-color .7s linear,  border-color .7s linear, opacity .4s linear;
       
 
 }
 
-.remove_this{
+.remove_dropdown_item{
         height: 0;
+        opacity: 0;
+        
 }
 
-.add_this{
+.add_dropdown_item{
+        height: 8vh;
+        opacity: 1;
+}       
+
+
+.remove_dropdown{
+        opacity: 0.8;
+        height:0vh;
+}
+
+.add_dropdown{
+        opacity: 1;
         height: 92vh;
 }
 
-.dropdown_menu_active{
-        background-color: black;
-        border-bottom: solid 3px white;
+
+
+.dropdown_item_text{
+        margin-left: 5rem;
+        font-size: 3vh;
+        justify-content: center;
+        color: white;
+        
+}
+
+
+.dropdown_item{
+        display: flex;
+
+        border-bottom: 2px white solid;
+        color: black;
+        padding: 1vh;
+   
+        align-items: center;
+        
+        width: 100vw;
+        z-index: 100;
+
+        -webkit-transition: height 0.5s linear, background-color .7s linear,  border-color .7s linear, opacity .4s linear;
+        -moz-transition: height 0.5s linear, background-color .7s linear,  border-color .7s linear,  opacity .4s linear;
+                transition: height 0.5s linear, background-color .7s linear,  border-color .7s linear, opacity .4s linear;
 }
 
 .dropdown_menu_inactive{
         border-bottom: solid 3px rgb(36,36,36);
         background-color: rgb(36,36,36);
+}
+
+
+.dropdown_menu_active{
+        background-color: black;
+        border-bottom: solid 3px white;
 }
 
