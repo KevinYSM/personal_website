@@ -88,13 +88,13 @@ function navbar() {
                 </div>
                 
                 <div className="dropdown_item remove_dropdown_item" >
+                        <div className="dropdown_item_text"> Projects</div>
+                </div>
+                <div className="dropdown_item remove_dropdown_item" >
+                        <div className="dropdown_item_text"> Writings</div>
+                </div>
+                <div className="dropdown_item remove_dropdown_item" >
                         <div className="dropdown_item_text"> TEDxKingsPark</div>
-                </div>
-                <div className="dropdown_item remove_dropdown_item" >
-                        <div className="dropdown_item_text"> Blog</div>
-                </div>
-                <div className="dropdown_item remove_dropdown_item" >
-                        <div className="dropdown_item_text"> Resume</div>
                 </div>
                 
         </div>

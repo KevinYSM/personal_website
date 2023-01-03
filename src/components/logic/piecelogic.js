@@ -30,11 +30,15 @@ function Gamelogic() {
         }
         
         function addPiece(square, piece){
-                if (square.hasChildNodes()) {
-                        square.removeChild(square.firstChild);
-                    }
-                addLogic(square);
-                square.appendChild(createPiece(piece));
+                if (square)
+                {
+                        if (square.hasChildNodes()) {
+                                square.removeChild(square.firstChild);
+                            }
+                        addLogic(square);
+                        square.appendChild(createPiece(piece));
+                }
+                
                 
                             
         }
@@ -97,6 +101,7 @@ function Gamelogic() {
                         }
                 }
                 pieceSelected=false;
+           
         
         }
         function docMouseMove(event){
@@ -136,7 +141,7 @@ function Gamelogic() {
                 document.body.style.cursor = 'grabbing';
                 var draggedPiece= document.getElementById("draggable");
                 if (!draggedPiece){
-                        var draggedPiece=document.createElement("div");
+                        draggedPiece=document.createElement("div");
                         draggedPiece.classList.add("draggedPiece");
                         draggedPiece.setAttribute("id","draggable");
                         draggedPiece.style.position = "absolute";
@@ -153,13 +158,6 @@ function Gamelogic() {
               
         }
 
-        function createPiece(piece){
-                let pieceImage=document.createElement("img"); 
-                pieceImage.src="chess_pieces/default/"+piece+".svg";
-                pieceImage.setAttribute("class","pieceImage");
-                pieceImage.classList.add(piece);
-                return pieceImage;
-        }
 
         
   return (

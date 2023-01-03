@@ -10,6 +10,9 @@
         width: var(--squareSize);
         height: var(--squareSize);
         border: none;
+        -webkit-transition:  opacity .8s linear;
+        -moz-transition: opacity .8s linear;
+                transition:  opacity .8s linear;
 
 }
 
@@ -19,7 +22,7 @@
 }
 
 .black{
-        background-color: black;
+        background-color: darkblue;
         border: none;
        
 }
