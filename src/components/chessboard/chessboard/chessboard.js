@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import './chessboard.css'
+import Gamelogic from "../../logic/piecelogic";
 
 
 export default function Chessboard(props) {
@@ -10,11 +11,13 @@ export default function Chessboard(props) {
 useEffect(() => {
         createSquares(num_rows, num_cols);
         spiralRenderSquares(27, "clockwise");
+   
         //document.getElementById("board").addEventListener("contextmenu", {highlightSquare});
         },[]);
   return (
 
     <div id="board_container">
+        
         <div id="board" onContextMenu={e=>highlightSquare(e)}></div>
 
         <div id="hovered_square"></div>
@@ -24,7 +27,10 @@ useEffect(() => {
 }
 
 
-
+function setupBoard(){
+        addPiece(1,"wpawn")
+}
+function addPiece(){}
 
 function createSquares(num_cols, num_rows){
         let num_squares=num_cols*num_rows;
@@ -50,10 +56,7 @@ function createSquares(num_cols, num_rows){
 }
 
 const timer = ms => new Promise(res => setTimeout(res, ms))
-async function spiralRenderSquares(starting_square, turning_direction){
-        let squares=document.getElementsByClassName("square");
-
-       
+async function spiralRenderSquares(starting_square, turning_direction){      
         //directions: left, down, right, up
         let clockwise_order=["right","down","left","up"];
         let anticlockwise_order=["left", "down","right","up"];
@@ -101,10 +104,7 @@ async function spiralRenderSquares(starting_square, turning_direction){
                                 
                                 makeSquareVisible(document.getElementById(next_square));
                                 num_squares+=1
-                                console.log("NUM_SQUARES"+num_squares)
-                                if (next_square===27){
-                                        console.log(next_square, order_selected[next_turn], next_turn)
-                                }
+                        
                                 if(order_selected[next_turn]==="left"){
                                         next_square-=1;
                                 }
@@ -120,7 +120,7 @@ async function spiralRenderSquares(starting_square, turning_direction){
                                 await timer(30);
                         }
                         next_turn=(next_turn+1)%4;
-                        console.log(next_turn)
+
                         if (i===8){
                                 break;
                         }

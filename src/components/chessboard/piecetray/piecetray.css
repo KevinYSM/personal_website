@@ -6,20 +6,20 @@
 }
 
 #piecetray{
-      
-        
-   
         background-color: white;
 }
 
 #piecetray_container .square{
         height: var(--squareSize);
         width: var(--squareSize);
+        display: flex;
+        align-items: center;
+        justify-content: center;
 }
 
 .pieceImage {
-        width: 100%;
-        height: 100%;
+        width: var(--squareSize);
+        height: var(--squareSize);
         cursor: grab;
         -webkit-user-drag: none;
         -khtml-user-drag: none;
