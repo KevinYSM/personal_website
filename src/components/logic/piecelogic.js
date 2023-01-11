@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function Gamelogic() {
+function Piecelogic() {
 
         useEffect(() => {
                 addPieces();
@@ -165,4 +165,4 @@ function Gamelogic() {
   )
 }
 
-export default Gamelogic
+export default Piecelogic
