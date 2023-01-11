@@ -4,12 +4,6 @@ import wpawn from "../../../assets/icons/chess_pieces/default/wpawn.svg"
 import "../../logic/piecelogic"
 function Piecetray() {
         
-        
-        
-    
-        
-
-
 
   return (
 

@@ -2,12 +2,24 @@ import React, { useEffect, useState } from 'react';
 
 function Piecelogic() {
 
+        var board_setup=[
+                ["r","n","b","q","k","b","n","r"],
+                ["p","p","p","p","p","p","p","p"],
+                [],
+                [],
+                [],
+                [],
+                ["P","P","P","P","P","P","P","P"],
+                ["R","N","B","Q","K","B","N","R"]
+        ]
         useEffect(() => {
-                addPieces();
+                addTrayPieces();
                 addPiecesLogic();
+                addBoardPieces();// not working, square is set to null
                    //document.getElementById("board").addEventListener("contextmenu", {highlightSquare});
                    },[]);
 
+ 
         document.addEventListener("mouseup", docMouseUp);
         document.addEventListener("mousemove", docMouseMove);
         document.addEventListener("mousedown", docMouseDown);
@@ -16,7 +28,7 @@ function Piecelogic() {
         var pieceSelected=false;
         var mousedown=false;
 
-        function addPieces(){
+        function addTrayPieces(){
     
                 let trayPieces=document.getElementsByClassName("traySquare");
                 
@@ -28,19 +40,76 @@ function Piecelogic() {
                         addPiece(trayPiece, pieceType);
                 }
         }
+
+        const timer = ms => new Promise(res => setTimeout(res, ms))
+        async function addBoardPieces(){
+                await timer(30);
+
+                for (let i=0;i<board_setup.length;i++){
+                        let row=board_setup[i];
+                        for (let j=0;j<row.length;j++){
+                                addPiece(document.getElementById(i*8+j),row[j])
+                        }
+                }
+                
+        }
         
         function addPiece(square, piece){
+          
                 if (square)
                 {
                         if (square.hasChildNodes()) {
                                 square.removeChild(square.firstChild);
                             }
                         addLogic(square);
-                        square.appendChild(createPiece(piece));
+                        square.appendChild(createPiece(translateLetters(piece)));
                 }
                 
                 
                             
+        }
+
+        function translateLetters(letter){
+                if (letter==="p"){
+                        return "bpawn";
+                }
+                else if (letter==="r"){
+                        return "brook";
+                }
+                else if (letter==="n"){
+                        return "bknight";
+                }
+                else if (letter==="b"){
+                        return "bbishop";
+                }
+                else if (letter==="q"){
+                        return "bqueen";
+                }
+                else if (letter==="k"){
+                        return "bking";
+                }
+                else if (letter==="P"){
+                        return "wpawn";
+                }
+                else if (letter==="R"){
+                        return "wrook";
+                }
+                else if (letter==="N"){
+                        return "wknight";
+                }
+                else if (letter==="B"){
+                        return "wbishop";
+                }
+                else if (letter==="Q"){
+                        return "wqueen";
+                }
+                else if (letter==="K"){
+                        return "wking";
+                }
+                else{
+                        return letter;
+                }
+                
         }
         
         function createPiece(piece){

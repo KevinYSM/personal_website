@@ -4,7 +4,7 @@
         position: relative;
         justify-content: space-between;
 
-        
+       
         
         -webkit-transition: background-color .7s linear,  border-color .7s linear, opacity .7s linear;
         -moz-transition: background-color .7s linear,  border-color .7s linear,  opacity .7s linear;
@@ -53,7 +53,7 @@
 
 #dropdown_menu{
         width: 100vw;
-        
+        z-index: 3;
         background-color: black;
         position: fixed;
         right: 0;
