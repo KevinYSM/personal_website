@@ -161,7 +161,7 @@ function Gamelogic() {
 
         
   return (
-    <div>gamelogic</div>
+    <div></div>
   )
 }
 

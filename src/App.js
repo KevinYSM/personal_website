@@ -1,6 +1,6 @@
 import './App.css';
 import Chessboard from "./components/chessboard/chessboard/chessboard";
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import MobileNavbar from "./components/navbar/mobile/navbar";
 import Endcredits from "./components/endcredits/endcredits";
 import PieceTray from "./components/chessboard/piecetray/piecetray"

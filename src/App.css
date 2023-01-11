@@ -1,9 +1,11 @@
 body{
-      
+   margin: 0;
+   padding: 0;
        
 }
 
 .App{
         background-color: rgb(27,27,27);
-        height: 100vh;
+        height: auto;
+        width:auto;
 }
