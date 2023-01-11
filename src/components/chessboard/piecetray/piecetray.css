@@ -3,10 +3,13 @@
         justify-content: center;
          align-items: center;
         background-color: rgb(27,27,27);
+        
 }
 
 #piecetray{
-        background-color: white;
+        background-color: grey;
+        padding: 1rem;
+        border-radius: 0.5rem;
 }
 
 #piecetray_container .square{
@@ -15,7 +18,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        
 }
+
+
 
 .pieceImage {
         width: var(--squareSize);

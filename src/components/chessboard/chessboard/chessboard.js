@@ -10,7 +10,7 @@ export default function Chessboard(props) {
         var num_rows=props.num_rows;
 useEffect(() => {
         createSquares(num_rows, num_cols);
-        spiralRenderSquares(27, "clockwise");
+        spiralRenderSquares(27, "clockwise"); //make this trigger on display
    
         //document.getElementById("board").addEventListener("contextmenu", {highlightSquare});
         },[]);

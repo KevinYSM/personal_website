@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import "./navbar.css"
 import Logo from "../../../assets/logo/kevinsm_clear_white.png"
 import Menu from "../../../assets/icons/SVG/menu.svg"
 import Close from "../../../assets/icons/SVG/close.svg"
 
-function navbar() {
+function Navbar() {
+        useEffect(() => {
+                document.getElementById("chessboard_dropdown_button").addEventListener("click",openChessboard)
+                },[]);
         function removeDropdownItems(){
                 let dropdownItems=document.getElementsByClassName("dropdown_item");
                 for (let i=0; i<dropdownItems.length; i++){
@@ -14,7 +17,11 @@ function navbar() {
                        
                 }
         }
-
+        function openChessboard(){
+                navbarClick();
+                document.getElementById("chessboard").style.display="block";
+                
+        }
         function addDropdownItems(){
                 let dropdownItems=document.getElementsByClassName("dropdown_item");
                         for (let i=0; i<dropdownItems.length; i++){
@@ -83,6 +90,9 @@ function navbar() {
     </div>
 
         <div id="dropdown_menu" className="remove_dropdown">
+                <div id="chessboard_dropdown_button" className="dropdown_item remove_dropdown_item" >
+                        <div className="dropdown_item_text"> Chessboard</div>
+                </div>
                 <div className="dropdown_item remove_dropdown_item" >
                         <div className="dropdown_item_text"> About</div>
                 </div>
@@ -102,4 +112,4 @@ function navbar() {
   )
 }
 
-export default navbar
+export default Navbar

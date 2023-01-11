@@ -4,7 +4,9 @@
         background-color: rgb(36, 36, 36);
         color: white;
         font-size: 2vh;
-        font-family: "Bell MT"
+        font-family: "Bell MT";
+        z-index: 1;
+        margin-top: 5vh;
 }
 
 #made_by_me{
