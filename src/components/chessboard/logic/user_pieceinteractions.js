@@ -13,6 +13,58 @@ function Piecelogic() {
                 ["P","P","P","P","P","P","P","P"],
                 ["R","N","B","Q","K","B","N","R"]
         ]
+        const useMousePosition = () => {
+                const [
+                  mousePosition,
+                  setMousePosition
+                ] = React.useState({ x: null, y: null });
+                React.useEffect(() => {
+                  const updateMousePosition = ev => {
+                    setMousePosition({ x: ev.clientX, y: ev.clientY });
+                  };
+                  window.addEventListener('mousemove', updateMousePosition);
+                  return () => {
+                    window.removeEventListener('mousemove', updateMousePosition);
+                  };
+                }, []);
+               
+                return mousePosition;
+        }
+        const mousePosition = useMousePosition();
+        const [chessBoard,setChessBoard]=useState(board_setup)
+        const [selectedPiece,setSelectedPiece]=useState([0,0]);
+        const [releaseSquare,setReleaseSquare]=useState();
+        useEffect(()=>{
+              
+        },[chessBoard])
+
+
+        useEffect(()=>{
+        
+                let square=document.getElementById(selectedPiece[1])
+          
+                if (square){
+                        if (!square.classList.contains("traySquare")){
+                                square.firstChild.remove();
+                        }
+                }
+                highlightSquare(1);
+                
+        },[selectedPiece])
+
+        useEffect(()=>{
+                if (releaseSquare){
+                        addPiece(document.getElementById(releaseSquare),selectedPiece[0])
+                        console.log(document.getElementById(releaseSquare))
+                        highlightSquare(1);
+                }
+            
+                
+        },[releaseSquare])
+
+        useEffect(()=>{
+
+        })
         useEffect(() => {
                 addTrayPieces();
                 addPiecesLogic();
@@ -57,16 +109,16 @@ function Piecelogic() {
         }
         
         function addPiece(square, piece){
-          
+                
                 if (square)
                 {
                         if (square.hasChildNodes()) {
                                 square.removeChild(square.firstChild);
                             }
-                        addLogic(square);
+                        
                         square.appendChild(createPiece(translateLetters(piece)));
                 }
-                
+         
                 
                             
         }
@@ -115,12 +167,16 @@ function Piecelogic() {
         }
         
         function createPiece(piece){
+                let newPiece=document.createElement("div");
+                newPiece.classList.add(piece)
                 let pieceImage=document.createElement("img"); 
                 pieceImage.src="chess_pieces/default/"+piece+".svg";
                 pieceImage.setAttribute("class","pieceImage");
-                pieceImage.classList.add(piece);
                 
-                return pieceImage;
+
+                newPiece.appendChild(pieceImage);
+                addLogic(newPiece);
+                return newPiece;
         }
 
         function addPiecesLogic(){
@@ -133,7 +189,7 @@ function Piecelogic() {
                 
         }
         function addLogic(piece){
-               
+          
                 
                 piece.addEventListener("mousedown", clickPiece);
                 piece.addEventListener("mouseup", releasePiece);
@@ -143,14 +199,8 @@ function Piecelogic() {
                 
         }
         function clickPiece(){
-                console.log(this.firstChild)
-                pieceSelected=this.firstChild.classList[1];
-                
-                if (!this.classList.contains("traySquare")){
-                        this.firstChild.remove();
-                }
-                
-                
+                pieceSelected=this.classList[0];
+                setSelectedPiece([this.classList[0], this.parentElement.id])
         }
         function releasePiece(){
                 //pieceSelected=false;
@@ -165,11 +215,14 @@ function Piecelogic() {
                 document.body.style.cursor = 'default';
                 
                 if (pieceSelected){
+                        console.log(pieceSelected);
                         let square_id=document.getElementById("hovered_square").innerHTML;
-                   
+                        console.log(square_id)
                         if (square_id){
-                                addPiece(document.getElementById(square_id),pieceSelected);
+                                setReleaseSquare(square_id);
                         }
+                        
+                        
                 }
                 pieceSelected=false;
            
@@ -189,7 +242,7 @@ function Piecelogic() {
                 mousedown=true;
                 if (pieceSelected){
                         var mousecoords=getMouseLoc(event);
-                       
+                        setReleaseSquare(false);
                         dragPiece(pieceSelected, mousecoords);
                 }
                 
@@ -229,7 +282,25 @@ function Piecelogic() {
               
         }
 
-
+        function highlightSquare(square_id){
+                let highlightColour="red";
+                let square=document.getElementById(square_id)
+                if (square){
+                        if ( square.style.backgroundColor==highlightColour){
+                                if (square.classList.contains("white")){
+                                        square.style.backgroundColor=document.documentElement.style.getPropertyValue('--colourWhite');
+                                }
+                                else{
+                                        square.style.backgroundColor=document.documentElement.style.getPropertyValue('--colourBlack');
+                                }
+                        }
+                 
+                        else{
+                                square.style.backgroundColor=highlightColour;
+                        }
+                }
+                
+        }
         
   return (
     <div></div>

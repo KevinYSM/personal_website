@@ -8,10 +8,13 @@ export default function Chessboard(props) {
         
         var num_cols=props.num_cols;
         var num_rows=props.num_rows;
+
+        
+        
 useEffect(() => {
         createSquares(num_rows, num_cols);
         spiralRenderSquares(27, "clockwise"); //make this trigger on display
-   
+        
         //document.getElementById("board").addEventListener("contextmenu", {highlightSquare});
         },[]);
   return (
@@ -174,10 +177,10 @@ function getSquareColor(square_id, num_cols) {
         if (this.style.backgroundColor===clickColor)
         {
                 if (this.classList.contains("white")){
-                        this.style.backgroundColor="white";
+                        this.style.backgroundColor=document.documentElement.style.getPropertyValue('--colourWhite');
                 }
                 else{
-                        this.style.backgroundColor="black";
+                        this.style.backgroundColor=document.documentElement.style.getPropertyValue('--colourBlack');
                 }
         }
         else{

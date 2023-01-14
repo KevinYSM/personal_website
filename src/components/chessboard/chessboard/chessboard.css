@@ -1,4 +1,9 @@
-
+:root{
+        --colourWhite: wheat;
+        --colourBlack: #b58863;   
+        --pieceType: default;
+        --squareSize: min(calc(80vw/8),calc(80vh/8));
+}
 
 #board {
         display: grid;

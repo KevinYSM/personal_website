@@ -17,12 +17,12 @@
 }
 
 .white{
-        background-color: white;
+        background-color: var(--colourWhite);
         border: none;
 }
 
 .black{
-        background-color: darkblue;
+        background-color: var(--colourBlack);
         border: none;
        
 }
