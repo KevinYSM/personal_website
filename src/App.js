@@ -4,7 +4,9 @@ import Chessboard from "./components/chessboard/chessboard/chessboard";
 
 import MobileNavbar from "./components/navbar/mobile/navbar";
 import Endcredits from "./components/endcredits/endcredits";
-import 'bootstrap/dist/css/bootstrap.min.css';
+
+import PieceObject from "./components/logic/pieceobject"
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 import React, { useEffect, useState } from 'react';
 import ChessBoard from "./pages/chessboard"
@@ -17,7 +19,7 @@ function App() {
   return (
     <div className="App" >
         <MobileNavbar/>
-        
+       
         <ChessBoard/>
         <Endcredits/>
        

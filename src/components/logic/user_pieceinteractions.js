@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PieceObject from "./pieceobject";
 
 function Piecelogic() {
 
@@ -15,7 +16,9 @@ function Piecelogic() {
         useEffect(() => {
                 addTrayPieces();
                 addPiecesLogic();
-                addBoardPieces();// not working, square is set to null
+                addBoardPieces();
+                console.log(new PieceObject("wpawn"))
+                console.log(<PieceObject pieceName="wpawn"/>)
                    //document.getElementById("board").addEventListener("contextmenu", {highlightSquare});
                    },[]);
 

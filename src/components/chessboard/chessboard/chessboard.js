@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import './chessboard.css'
-import Gamelogic from "../../logic/piecelogic";
+import Gamelogic from "../../logic/user_pieceinteractions";
 
 
 export default function Chessboard(props) {
@@ -16,7 +16,7 @@ useEffect(() => {
         },[]);
   return (
 
-    <div id="board_container">
+    <div id="chessboard_container">
         
         <div id="board" onContextMenu={e=>highlightSquare(e)}></div>
 

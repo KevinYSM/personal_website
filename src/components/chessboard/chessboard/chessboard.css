@@ -13,15 +13,15 @@
 .clear{
 opacity: 0;
 }
-#board_container {
+#chessboard_container {
 
         display: flex;
         justify-content: center;
         align-items: center;
     
         overflow: hidden;
+
         margin: 5vh;
-        height: 80vh;
     
 }
 

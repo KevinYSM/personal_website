@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "./piecetray.css"
 import wpawn from "../../../assets/icons/chess_pieces/default/wpawn.svg"
-import "../../logic/piecelogic"
+import "../../logic/user_pieceinteractions"
 function Piecetray() {
         
 
