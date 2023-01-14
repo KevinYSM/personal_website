@@ -5,11 +5,11 @@ import Chessboard from "./components/chessboard/chessboard/chessboard";
 import MobileNavbar from "./components/navbar/mobile/navbar";
 import Endcredits from "./components/endcredits/endcredits";
 
-import PieceObject from "./components/logic/pieceobject"
+import PieceObject from "./components/chessboard/logic/pieceobject"
 //import 'bootstrap/dist/css/bootstrap.min.css';
 
 import React, { useEffect, useState } from 'react';
-import ChessBoard from "./pages/chessboard"
+import ChessBoard from "./pages/chesspage"
 function App() {
         var pieceSelected=false;
 

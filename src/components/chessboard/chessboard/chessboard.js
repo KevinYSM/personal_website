@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import './chessboard.css'
-import Gamelogic from "../../logic/user_pieceinteractions";
+import Gamelogic from "../logic/user_pieceinteractions";
 
 
 export default function Chessboard(props) {
@@ -20,17 +20,14 @@ useEffect(() => {
         
         <div id="board" onContextMenu={e=>highlightSquare(e)}></div>
 
-        <div id="hovered_square"></div>
+        <div id="hovered_square"></div> 
     </div>
   )
   
 }
 
 
-function setupBoard(){
-        addPiece(1,"wpawn")
-}
-function addPiece(){}
+
 
 function createSquares(num_cols, num_rows){
         let num_squares=num_cols*num_rows;
@@ -47,7 +44,7 @@ function createSquares(num_cols, num_rows){
                 
                 //Add event Listeners
                 square.addEventListener("click", clickSquare);
-                square.addEventListener("mouseover",updateHoverSquare)
+                square.addEventListener("mouseover",updateHoverSquare);;
                 square.addEventListener("mouseleave", updateLeaveSquare)
                 board.appendChild(square);
         }

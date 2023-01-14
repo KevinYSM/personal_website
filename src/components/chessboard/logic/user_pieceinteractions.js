@@ -17,8 +17,7 @@ function Piecelogic() {
                 addTrayPieces();
                 addPiecesLogic();
                 addBoardPieces();
-                console.log(new PieceObject("wpawn"))
-                console.log(<PieceObject pieceName="wpawn"/>)
+
                    //document.getElementById("board").addEventListener("contextmenu", {highlightSquare});
                    },[]);
 
@@ -144,7 +143,7 @@ function Piecelogic() {
                 
         }
         function clickPiece(){
-             
+                console.log(this.firstChild)
                 pieceSelected=this.firstChild.classList[1];
                 
                 if (!this.classList.contains("traySquare")){
