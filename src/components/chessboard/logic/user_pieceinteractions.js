@@ -53,11 +53,6 @@ function Piecelogic() {
         useEffect(()=>{
                 if (releaseSquare){
                         addPiece(document.getElementById(releaseSquare),selectedPiece[0])
-                        console.log(selectedPiece)
-                        console.log(squareIDtoCoords(releaseSquare));
-                        
-                        
-             
                        
                         highlightSquare(1);
                 }

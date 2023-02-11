@@ -142,7 +142,7 @@ function updateLeaveSquare(){
         document.getElementById("hovered_square").innerHTML=false;
 }
 function updateHoverSquare(){
-        
+        console.log(this.id)
         document.getElementById("hovered_square").innerHTML=this.id;
       
 }
