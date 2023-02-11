@@ -1,0 +1,10 @@
+#search_algorithm_component{
+    color: white;
+    height: 100vh;
+}
+
+.square{
+    background-color: red;
+
+    border: 5px solid red;
+}
