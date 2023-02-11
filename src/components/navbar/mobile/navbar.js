@@ -11,7 +11,7 @@ function Navbar() {
         function removeDropdownItems(){
                 let dropdownItems=document.getElementsByClassName("dropdown_item");
                 for (let i=0; i<dropdownItems.length; i++){
-                        console.log(dropdownItems);
+              
                         dropdownItems[i].classList.remove("add_dropdown_item");
                         dropdownItems[i].classList.add("remove_dropdown_item");
                         

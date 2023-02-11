@@ -34,10 +34,7 @@ function Piecelogic() {
         const [chessBoard,setChessBoard]=useState(board_setup)
         const [selectedPiece,setSelectedPiece]=useState(false);
         const [releaseSquare,setReleaseSquare]=useState();
-        useEffect(()=>{
-            console.log(chessBoard)  
-                console.log("asd")
-        },[chessBoard])
+
 
 
         useEffect(()=>{
