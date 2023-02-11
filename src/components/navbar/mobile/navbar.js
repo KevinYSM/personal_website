@@ -14,7 +14,7 @@ function Navbar() {
                         console.log(dropdownItems);
                         dropdownItems[i].classList.remove("add_dropdown_item");
                         dropdownItems[i].classList.add("remove_dropdown_item");
-                       
+                        
                 }
         }
         function openChessboard(){
@@ -28,6 +28,7 @@ function Navbar() {
                               
                                 dropdownItems[i].classList.add("add_dropdown_item");
                                 dropdownItems[i].classList.remove("remove_dropdown_item");
+                               
                         }
 
         }
@@ -90,19 +91,31 @@ function Navbar() {
     </div>
 
         <div id="dropdown_menu" className="remove_dropdown">
+                <a href="/chessboard">
                 <div id="chessboard_dropdown_button" className="dropdown_item remove_dropdown_item" >
                         <div className="dropdown_item_text"> Chessboard</div>
                 </div>
+                </a>
+                <a>
                 <div className="dropdown_item remove_dropdown_item" >
                         <div className="dropdown_item_text"> About</div>
                 </div>
-                
+                </a>
+                <a href="/projects">
                 <div className="dropdown_item remove_dropdown_item" >
                         <div className="dropdown_item_text"> Projects</div>
                 </div>
+                </a>
+                <a>
                 <div className="dropdown_item remove_dropdown_item" >
                         <div className="dropdown_item_text"> Writings</div>
                 </div>
+                </a>
+                <a href="/search_algorithms">
+                <div className="dropdown_item remove_dropdown_item" >
+                        <div className="dropdown_item_text"> Search Algorithms</div>
+                </div>
+                </a>
                 <div className="dropdown_item remove_dropdown_item" >
                         <div className="dropdown_item_text"> TEDxKingsPark</div>
                 </div>

@@ -69,23 +69,27 @@
 .remove_dropdown_item{
         height: 0;
         opacity: 0;
-        
+        display: none;
+        pointer-events: none;
 }
 
 .add_dropdown_item{
         height: 8vh;
         opacity: 1;
+        
 }       
 
 
 .remove_dropdown{
         opacity: 0.8;
         height:0vh;
+        pointer-events: none;
 }
 
 .add_dropdown{
         opacity: 1;
         height: 92vh;
+        pointer-events: initial;
 }
 
 

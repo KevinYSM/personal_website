@@ -6,10 +6,10 @@ function Piecelogic() {
         var board_setup=[
                 ["r","n","b","q","k","b","n","r"],
                 ["p","p","p","p","p","p","p","p"],
-                [],
-                [],
-                [],
-                [],
+                ["","","","","","","",""],
+                ["","","","","","","",""],
+                ["","","","","","","",""],
+                ["","","","","","","",""],
                 ["P","P","P","P","P","P","P","P"],
                 ["R","N","B","Q","K","B","N","R"]
         ]
@@ -32,10 +32,11 @@ function Piecelogic() {
         }
         const mousePosition = useMousePosition();
         const [chessBoard,setChessBoard]=useState(board_setup)
-        const [selectedPiece,setSelectedPiece]=useState([0,0]);
+        const [selectedPiece,setSelectedPiece]=useState(false);
         const [releaseSquare,setReleaseSquare]=useState();
         useEffect(()=>{
-              
+            console.log(chessBoard)  
+                console.log("asd")
         },[chessBoard])
 
 
@@ -55,7 +56,12 @@ function Piecelogic() {
         useEffect(()=>{
                 if (releaseSquare){
                         addPiece(document.getElementById(releaseSquare),selectedPiece[0])
-                        console.log(document.getElementById(releaseSquare))
+                        console.log(selectedPiece)
+                        console.log(squareIDtoCoords(releaseSquare));
+                        
+                        
+             
+                       
                         highlightSquare(1);
                 }
             
@@ -102,7 +108,10 @@ function Piecelogic() {
                 for (let i=0;i<board_setup.length;i++){
                         let row=board_setup[i];
                         for (let j=0;j<row.length;j++){
-                                addPiece(document.getElementById(i*8+j),row[j])
+                                if (row[j]!=""){
+                                        addPiece(document.getElementById(i*8+j),row[j])
+                                }
+                               
                         }
                 }
                 
@@ -117,6 +126,16 @@ function Piecelogic() {
                             }
                         
                         square.appendChild(createPiece(translateLetters(piece)));
+
+                        if(selectedPiece){
+                                let new_chessBoard=chessBoard;
+                                let old_coords=squareIDtoCoords(selectedPiece[1])
+                                let new_coords=squareIDtoCoords(releaseSquare);
+                                new_chessBoard[new_coords[0]][new_coords[1]]=new_chessBoard[old_coords[0]][old_coords[1]]
+                                new_chessBoard[old_coords[0]][old_coords[1]]=""
+                                setChessBoard(new_chessBoard);
+                        }
+                        
                 }
          
                 
@@ -215,9 +234,7 @@ function Piecelogic() {
                 document.body.style.cursor = 'default';
                 
                 if (pieceSelected){
-                        console.log(pieceSelected);
                         let square_id=document.getElementById("hovered_square").innerHTML;
-                        console.log(square_id)
                         if (square_id){
                                 setReleaseSquare(square_id);
                         }
@@ -300,6 +317,13 @@ function Piecelogic() {
                         }
                 }
                 
+        }
+
+        function squareIDtoCoords(square_id){
+                let coords=[];
+                let x_coord=Math.floor(square_id/8);
+                let y_coord=square_id%8;
+                return [x_coord,y_coord]
         }
         
   return (
