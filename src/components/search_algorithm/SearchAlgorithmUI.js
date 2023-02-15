@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import "./SearchAlgorithm.css"
 import Pig from "../../assets/icons/SVG/pig.svg"
+import Pizza from "../../assets/icons/SVG/pizza.svg"
 function SearchAlgorithm() {
   var leftDown=false;
   var rightDown=false;
@@ -13,6 +14,11 @@ function SearchAlgorithm() {
       switch(e.button){
         case 0:
           leftDown=true;
+
+          if (markerSelected){
+            var mousecoords=getMouseLoc(e);
+            dragMarker(markerSelected, mousecoords);
+          }
           break;
         case 1:
           rightDown=true;
@@ -71,6 +77,7 @@ function SearchAlgorithm() {
           return false;
         })
         addStartMarker(20);
+        addEndMarker(30);
         //document.getElementById("board").addEventListener("contextmenu", {highlightSquare});
         },[]);
   
@@ -93,7 +100,26 @@ function SearchAlgorithm() {
             square.setAttribute("id", i);
   
             square.addEventListener("mouseover", squareMouseOver)
-            square.addEventListener("mousedown",squareMouseDown)
+            square.addEventListener("mousedown",function(e){
+              if (e.which===1){
+                if (!isMarker(this)){
+                  if (this.style.backgroundColor=="blue"){
+                    eraseWalls=true;
+                  }
+                  else{
+                    eraseWalls=false;
+                  }
+                  updateWall(this);
+                 
+                }
+            
+                else{
+                  markerSelected=this.firstChild.classList[0];
+                  this.firstChild.remove();
+                }
+              }
+              
+            })
             square.ondragstart=function(){
               return false;
             }
@@ -117,46 +143,52 @@ function SearchAlgorithm() {
   function addStartMarker(square_id){
     let square=document.getElementById(square_id);
     
-    square.append(createMarker(markerSelected));
+    square.append(createMarker("start_marker"));
+  }
+
+  function addEndMarker(square_id){
+    let square=document.getElementById(square_id);
+    
+    square.append(createMarker("end_marker"));
   }
 
   function createMarker(markerSelected){
-    let startMarker= document.createElement("div");
-    startMarker.classList.add("start_marker");
-    let startImage=document.createElement("img");
-    startImage.classList.add("start_image")
-    startMarker.append(startImage);
-    startImage.src=Pig;
-    return startMarker;
-  }
-  function squareMouseDown(){
-    if (!isStartMarker(this)){
-      if (this.style.backgroundColor=="blue"){
-        eraseWalls=true;
-      }
-      else{
-        eraseWalls=false;
-      }
-      updateWall(this);
+    //start_marker or end_marker
+    let marker_class;
+    let marker_image;
+    if (markerSelected=="start_marker"){
+      marker_class="start_marker"
+      marker_image=Pig;
+    }
+    if (markerSelected=="end_marker"){
+      marker_class="end_marker"
+      marker_image=Pizza;
+
     }
 
-    else{
-      markerSelected=this.firstChild.classList[0];
-      this.firstChild.remove();
-      if (markerSelected){
-        var mousecoords=getMouseLoc(this);
-        dragMarker(markerSelected, mousecoords);
-      }
-      
-    }
+    let marker= document.createElement("div");
+    marker.classList.add(marker_class);
+    marker.classList.add("marker");
+    let markerImage=document.createElement("img");
+    markerImage.classList.add("marker_image")
+    marker.append(markerImage);
+    markerImage.src=marker_image;
+   
+    return marker;
+  }
+  function squareMouseDown(){
+   
     
   }
 
-  function isStartMarker(square){
+  function isMarker(square){
     if (!square.firstChild){
       return false;
     }
-    if (square.firstChild.classList.contains("start_marker")){
+    if (square.firstChild.classList.contains("start_marker" )){
+      return true;
+    }
+    if (square.firstChild.classList.contains("end_marker" )){
       return true;
     }
     return false;
@@ -178,7 +210,27 @@ function SearchAlgorithm() {
     
   }
   function getMapState(){
-    
+    let board_squares=document.getElementById("search_board").children;
+    let board_state=[];
+
+    for (let i=0; i<board_squares.length;i++){
+      let current_square=board_squares[i];
+      if (current_square.style.backgroundColor==="blue"){
+        board_state.push(2)
+      }
+      else if (!current_square.firstChild){
+        board_state.push(0)
+      }
+      else if (current_square.firstChild.classList.contains("start_marker")){
+        board_state.push(1)
+      }
+      else if (current_square.firstChild.classList.contains("end_marker")){
+        board_state.push(3);
+      }
+      else{}
+      
+    }
+    return board_state;
   }
 
   function dragMarker(markerSelected, mousecoords){

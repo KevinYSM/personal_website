@@ -4,7 +4,7 @@ import Chessboard from "./components/chessboard/chessboard/chessboard";
 
 import MobileNavbar from "./components/navbar/mobile/navbar";
 import Endcredits from "./components/endcredits/endcredits";
-import SearchAlgorithm from "./components/search_algorithm/SearchAlgorithm"
+import SearchAlgorithm from "./components/search_algorithm/SearchAlgorithmUI"
 import Projects from "./components/projects/Projects"
 
 import PieceObject from "./components/chessboard/logic/pieceobject"

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import PieceObject from "./pieceobject";
+import {getLegalMoves} from "./piecelogic"
 
-function Piecelogic() {
+function PieceInteractions() {
 
         var board_setup=[
                 ["r","n","b","q","k","b","n","r"],
@@ -46,7 +46,8 @@ function Piecelogic() {
                                 square.firstChild.remove();
                         }
                 }
-                highlightSquare(1);
+                let legal_moves=getLegalMoves(selectedPiece[0],selectedPiece[1], chessBoard)
+                highlightSquares(legal_moves);
                 
         },[selectedPiece])
 
@@ -54,7 +55,7 @@ function Piecelogic() {
                 if (releaseSquare){
                         addPiece(document.getElementById(releaseSquare),selectedPiece[0])
                        
-                        highlightSquare(1);
+                        highlightSquares([1,2]);
                 }
             
                 
@@ -126,6 +127,7 @@ function Piecelogic() {
                                 new_chessBoard[new_coords[0]][new_coords[1]]=new_chessBoard[old_coords[0]][old_coords[1]]
                                 new_chessBoard[old_coords[0]][old_coords[1]]=""
                                 setChessBoard(new_chessBoard);
+                           
                         }
                         
                 }
@@ -176,6 +178,8 @@ function Piecelogic() {
                 }
                 
         }
+
+       
         
         function createPiece(piece){
                 let newPiece=document.createElement("div");
@@ -292,6 +296,7 @@ function Piecelogic() {
         }
 
         function highlightSquare(square_id){
+                
                 let highlightColour="red";
                 let square=document.getElementById(square_id)
                 if (square){
@@ -311,6 +316,17 @@ function Piecelogic() {
                 
         }
 
+        function highlightSquares(square_ids){
+                if (Array.isArray(square_ids)){
+                        for (let i=0;i<square_ids.length;i++){
+                                highlightSquare(square_ids[i])
+                        }
+                }
+                else{
+                        highlightSquare(square_ids)
+                }
+        }
+
         function squareIDtoCoords(square_id){
                 let coords=[];
                 let x_coord=Math.floor(square_id/8);
@@ -323,4 +339,4 @@ function Piecelogic() {
   )
 }
 
-export default Piecelogic
+export default PieceInteractions

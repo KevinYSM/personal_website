@@ -23,7 +23,7 @@
 }
 
 
-.start_marker{
+.marker{
     display: flex;
     height: 100%;
     width: 100%;
@@ -31,7 +31,7 @@
     align-items: center;
     
 }
-.start_image{
+.marker_image{
     height: 4vh;
     width: 4vh;
 }
