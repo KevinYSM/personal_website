@@ -191,7 +191,7 @@ function SearchAlgorithm() {
   }
 
   function startSearch(){
-    getShortestPath(getMapState());
+    getShortestPath(getMapState(), numRows,numCols);
   }
 
   
@@ -233,7 +233,7 @@ function SearchAlgorithm() {
         let square_id=i*numCols+j;
         let current_square=document.getElementById(square_id);
         if (current_square.style.backgroundColor==="blue"){
-          board_row.push(2)
+          board_row.push(2) //wall
         }
         else if (!current_square.firstChild){
           board_row.push(0)
@@ -242,7 +242,7 @@ function SearchAlgorithm() {
           board_row.push(1)
         }
         else if (current_square.firstChild.classList.contains("end_marker")){
-          board_row.push(3);
+          board_row.push(3); //end
         }
         else{
         }
