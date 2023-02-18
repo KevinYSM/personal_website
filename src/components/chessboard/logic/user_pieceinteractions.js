@@ -48,13 +48,15 @@ function PieceInteractions() {
                 }
                 let legal_moves=getLegalMoves(selectedPiece[0],selectedPiece[1], chessBoard)
                 highlightSquares(legal_moves);
-                
+                console.log(selectedPiece)
         },[selectedPiece])
 
         useEffect(()=>{
+                console.log(releaseSquare)
                 if (releaseSquare){
+                        
                         addPiece(document.getElementById(releaseSquare),selectedPiece[0])
-                       
+                        
                         highlightSquares([1,2]);
                 }
             
@@ -111,15 +113,12 @@ function PieceInteractions() {
         }
         
         function addPiece(square, piece){
-                
-                if (square)
-                {
+
+                if (square){
                         if (square.hasChildNodes()) {
                                 square.removeChild(square.firstChild);
                             }
-                        
                         square.appendChild(createPiece(translateLetters(piece)));
-
                         if(selectedPiece){
                                 let new_chessBoard=chessBoard;
                                 let old_coords=squareIDtoCoords(selectedPiece[1])
@@ -127,13 +126,8 @@ function PieceInteractions() {
                                 new_chessBoard[new_coords[0]][new_coords[1]]=new_chessBoard[old_coords[0]][old_coords[1]]
                                 new_chessBoard[old_coords[0]][old_coords[1]]=""
                                 setChessBoard(new_chessBoard);
-                           
                         }
-                        
-                }
-         
-                
-                            
+                }   
         }
 
         function translateLetters(letter){
@@ -216,6 +210,7 @@ function PieceInteractions() {
         function clickPiece(){
                 pieceSelected=this.classList[0];
                 setSelectedPiece([this.classList[0], this.parentElement.id])
+           
         }
         function releasePiece(){
                 //pieceSelected=false;
@@ -231,8 +226,13 @@ function PieceInteractions() {
                 
                 if (pieceSelected){
                         let square_id=document.getElementById("hovered_square").innerHTML;
-                        if (square_id){
+                        console.log(square_id)
+                        if (square_id!="false"){
                                 setReleaseSquare(square_id);
+                        }
+                        else{
+                                console.log(selectedPiece)
+                                setReleaseSquare(selectedPiece[2])        
                         }
                         
                         
@@ -255,7 +255,6 @@ function PieceInteractions() {
                 mousedown=true;
                 if (pieceSelected){
                         var mousecoords=getMouseLoc(event);
-                        setReleaseSquare(false);
                         dragPiece(pieceSelected, mousecoords);
                 }
                 

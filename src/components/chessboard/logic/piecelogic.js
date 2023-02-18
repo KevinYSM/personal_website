@@ -8,6 +8,7 @@ function PieceLogic() {
 }
 
 export function getLegalMoves(piece, square_id, board_state){
+  console.log(board_state)
   if (piece && square_id){
           let pieceColour=piece.slice(0,1)
           let pieceType=piece.substring(1)
@@ -26,6 +27,7 @@ export function pawnLogic(pieceColour, square_id, board_state){
   let direction;
   let possibleMoves=[];
   let legalMoves=[];
+
   let pieceRank=getRank(square_id)
   if (pieceColour=="w"){
     direction = 1;
@@ -36,7 +38,7 @@ export function pawnLogic(pieceColour, square_id, board_state){
   else{
     direction = -1;
   }
-  console.log(getRank(square_id))
+
 
 
   return legalMoves;
