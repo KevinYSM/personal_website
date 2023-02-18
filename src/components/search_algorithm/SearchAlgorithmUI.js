@@ -2,12 +2,16 @@ import React, {useEffect} from 'react'
 import "./SearchAlgorithm.css"
 import Pig from "../../assets/icons/SVG/pig.svg"
 import Pizza from "../../assets/icons/SVG/pizza.svg"
+
+import {getShortestPath} from "./SearchAlgorithmLogic"
 function SearchAlgorithm() {
   var leftDown=false;
   var rightDown=false;
   var eraseWalls=false;
   var markerSelected=false;
   var lastHoveredSquare=false;
+  var numRows=10;
+  var numCols=20;
 
     window.addEventListener("mousedown", function(e){
       e.preventDefault();
@@ -27,6 +31,7 @@ function SearchAlgorithm() {
       return false;
     })
 
+    
  
     window.addEventListener("mouseup", function(e){
       document.body.style.cursor = 'default';
@@ -69,15 +74,19 @@ function SearchAlgorithm() {
 
     }
     useEffect(() => {
-        createSquares(20, 10);
+        createSquares(numCols, numRows);
+        
+
         document.getElementById("search_board").addEventListener("contextmenu", function(e){
         
       
           e.preventDefault();
           return false;
         })
+
         addStartMarker(20);
         addEndMarker(30);
+
         //document.getElementById("board").addEventListener("contextmenu", {highlightSquare});
         },[]);
   
@@ -181,6 +190,11 @@ function SearchAlgorithm() {
     
   }
 
+  function startSearch(){
+    getShortestPath(getMapState());
+  }
+
+  
   function isMarker(square){
     if (!square.firstChild){
       return false;
@@ -210,25 +224,31 @@ function SearchAlgorithm() {
     
   }
   function getMapState(){
-    let board_squares=document.getElementById("search_board").children;
     let board_state=[];
+    
+    for (let j=0;j<numCols;j++){
+    
+      let board_row=[]
+      for (let i=numRows-1;i>=0;i--){
+        let square_id=i*numCols+j;
+        let current_square=document.getElementById(square_id);
+        if (current_square.style.backgroundColor==="blue"){
+          board_row.push(2)
+        }
+        else if (!current_square.firstChild){
+          board_row.push(0)
+        }
+        else if (current_square.firstChild.classList.contains("start_marker")){
+          board_row.push(1)
+        }
+        else if (current_square.firstChild.classList.contains("end_marker")){
+          board_row.push(3);
+        }
+        else{
+        }
+      }
 
-    for (let i=0; i<board_squares.length;i++){
-      let current_square=board_squares[i];
-      if (current_square.style.backgroundColor==="blue"){
-        board_state.push(2)
-      }
-      else if (!current_square.firstChild){
-        board_state.push(0)
-      }
-      else if (current_square.firstChild.classList.contains("start_marker")){
-        board_state.push(1)
-      }
-      else if (current_square.firstChild.classList.contains("end_marker")){
-        board_state.push(3);
-      }
-      else{}
-      
+      board_state.push(board_row);
     }
     return board_state;
   }
@@ -263,8 +283,9 @@ function SearchAlgorithm() {
             <div></div>
         </div>
         <div id="control_panel">
-            <div className="button"> <div>Start</div></div>
-            
+   
+            <div id="start_button" className="button" onClick={startSearch}> <div>Start</div></div>
+
         </div>
 
         <div id="placeable_elements">
