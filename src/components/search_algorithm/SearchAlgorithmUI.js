@@ -149,6 +149,21 @@ function SearchAlgorithm() {
     
   }
 
+  function resetSolve(){
+    for (let i=0;i<numCols;i++){
+      for (let j=0;j<numRows;j++){
+        let square_id=i*numRows+j;
+        let square=document.getElementById(square_id);
+        if (square.style.backgroundColor=="red" | square.style.transitionDelay!="0s")
+        {
+          square.style.transitionDelay="0s";
+          square.style.backgroundColor="white";
+          
+        }
+       
+      }
+    }
+  }
   function addStartMarker(square_id){
     let square=document.getElementById(square_id);
     
@@ -217,11 +232,14 @@ function SearchAlgorithm() {
 
     else{
       if (square.style.backgroundColor!="blue"){
-        square.style.backgroundColor="blue"
+        if (!square.firstChild){
+          square.style.backgroundColor="blue"
+        }
+        
       }
     }
 
-    
+    resetSolve();
   }
   function getMapState(){
     let board_state=[];
@@ -254,6 +272,7 @@ function SearchAlgorithm() {
   }
 
   function dragMarker(markerSelected, mousecoords){
+    resetSolve();
     document.body.style.cursor = 'grabbing';
     var draggedPiece= document.getElementById("draggable");
     if (!draggedPiece){

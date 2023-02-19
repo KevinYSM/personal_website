@@ -76,11 +76,14 @@ function getStartingSquare(mapState){
 
 function highlightFinalPath(finalPath){
     for (let i=0; i<finalPath.length; i++){
-        let currentSquare=getSquare(finalPath[i]);
-        currentSquare.style.backgroundColor="red";
+     
 
+        let currentSquare=getSquare(finalPath[i]);
+        currentSquare.style.transitionDelay=String(0.1*i).concat("s")
+        currentSquare.style.backgroundColor="red";
     }
 }
+
 
 function getSquare(coordinates) //use cookies for this
 {
